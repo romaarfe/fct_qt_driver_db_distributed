@@ -10,7 +10,7 @@
 - [x] Permitir que este driver, QSQLCipher, trabalhe tanto com SQLite quanto com SQLCipher
 - [x] Implementação do código associado
 - [x] Testes da funcionalidades através da apresentação de seu conteúdo
-- [x] Criação do primeiro nodo por linha de comando e associação por código
+- [x] Criação do primeiro nodo (leader) por linha de comando e associação por código
 - [ ] Criar novos nodos, gerando um cluster e distribuir de fato a base de dados
 
 ---
