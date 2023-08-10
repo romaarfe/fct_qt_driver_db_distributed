@@ -10,11 +10,7 @@ public:
     explicit RequestHandler(QObject *parent = nullptr) : QObject(parent) {}
 
 public slots:
-    void startRequest() {
-        QNetworkAccessManager *networkManager = new QNetworkAccessManager(this);
-
-        // Defina as informações do nó do rqlite
-        QString rqliteUrl = "http://127.0.0.1:4001/db/query";
+    bool performLocalDatabaseOperations() {
 
         // Crie uma conexão para a base de dados com SQLCipher
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLCIPHER");
@@ -40,28 +36,41 @@ public slots:
             } else {
                 qDebug() << "Erro na consulta SQL:" << query.lastError().text();
             }
-
-            // Crie a solicitação HTTP GET para a consulta
-            QUrl url(rqliteUrl);
-            QUrlQuery queryUrl;
-            queryUrl.addQueryItem("q", selectQuery); // Use selectQuery como parte da consulta
-            url.setQuery(queryUrl);
-
-            QNetworkRequest request(url); // Aqui você usa diretamente QNetworkRequest
-
-            QNetworkReply *reply = networkManager->get(request);
-
-            connect(reply, &QNetworkReply::finished, this, [=]() {
-                handleReply(reply);
-                networkManager->deleteLater();
-            });
-
         } else {
             qDebug() << "Erro ao abrir a base de dados:" << db.lastError().text();
         }
+        return true;
     }
 
+    void startRequest() {
+        // Operações de base de dados locais
+        bool databaseSuccess = performLocalDatabaseOperations();
+
+        if (databaseSuccess) {
+            // Inicialização do QNetworkAccessManager
+            QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+            // Criação da solicitação GET
+            QNetworkRequest request;
+            request.setUrl(QUrl("http://127.0.0.1:4001/db/query?q=PRAGMA%20key%20=%20senha%3B"));
+
+            request.setUrl(QUrl("http://127.0.0.1:4001/db/query?q=SELECT%20*%20FROM%20tabela"));
+
+            // Execução da solicitação GET
+            QNetworkReply *reply = manager->get(request);
+
+            // Conexão do sinal finished usando um lambda para lidar com a resposta
+            connect(reply, &QNetworkReply::finished, this, [=]() {
+                handleReply(reply);
+            });
+        }
+    }
+
+
     void handleReply(QNetworkReply *reply) {
+        if (!reply)
+            return;
+
         if (reply->error() == QNetworkReply::NoError) {
             QByteArray responseData = reply->readAll();
             qDebug() << "Resposta do rqlite:" << responseData;
@@ -70,8 +79,8 @@ public slots:
         }
 
         reply->deleteLater();
-        QApplication::instance()->quit(); // Encerre a execução após a conclusão
     }
+
 };
 
 int main(int argc, char *argv[]) {
