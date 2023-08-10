@@ -6,7 +6,7 @@
 #### ⚙️ ETAPAS / FUNCIONALIDADES:
 
 - [x] Criação de nova base de dados no QT utilizando o driver/plugin (QSQLCIPHER)
-- [x] Promover encriptação através do SQLCipher
+- [x] Promover encriptação através do SQLCipher (no driver)
 - [x] Permitir que este driver, QSQLCipher, trabalhe tanto com SQLite quanto com SQLCipher
 - [x] Implementação do código associado
 - [x] Testes da funcionalidades através da apresentação de seu conteúdo
