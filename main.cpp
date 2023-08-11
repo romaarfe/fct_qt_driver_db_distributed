@@ -1,4 +1,6 @@
-#define SQLITE_HAS_CODEC // Habilita o uso de codificação no SQLite (provavelmente para criptografia)
+// Habilita o uso de codificação no SQLite (provavelmente para criptografia)
+#define SQLITE_HAS_CODEC
+
 #define DQLITE_API
 
 #include "mainwindow.h"
@@ -11,10 +13,9 @@ public:
 
 public slots:
     bool performLocalDatabaseOperations() {
-
         // Crie uma conexão para a base de dados com SQLCipher
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLCIPHER");
-        db.setDatabaseName("basedados.db"); // Use uma conexão temporária em memória para desencriptar
+        db.setDatabaseName("basedados.db");
 
         if (db.open()) {
             qDebug() << "Conexão com a base de dados estabelecida com sucesso.";
@@ -52,9 +53,8 @@ public slots:
 
             // Criação da solicitação GET
             QNetworkRequest request;
-            request.setUrl(QUrl("http://127.0.0.1:4001/db/query?q=PRAGMA%20key%20=%20senha%3B"));
-
-            request.setUrl(QUrl("http://127.0.0.1:4001/db/query?q=SELECT%20*%20FROM%20tabela"));
+            //request.setUrl(QUrl("http://127.0.0.1:4001/db/query?q=PRAGMA key = senha"));
+            request.setUrl(QUrl("http://127.0.0.1:4001/db/query?q=SELECT * FROM tabela"));
 
             // Execução da solicitação GET
             QNetworkReply *reply = manager->get(request);
@@ -86,13 +86,15 @@ public slots:
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
+    // Iniciar a solicitação
     RequestHandler handler;
-    handler.startRequest(); // Iniciar a solicitação
+    handler.startRequest();
 
     MainWindow w;
     w.show();
 
-    return a.exec();    // Executa o loop de eventos da aplicação
+    // Executa o loop de eventos da aplicação
+    return a.exec();
 }
 
 #include "main.moc"
