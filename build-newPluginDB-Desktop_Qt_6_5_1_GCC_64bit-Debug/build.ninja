@@ -182,7 +182,7 @@ build newPluginDB_autogen/timestamp newPluginDB_autogen/mocs_compilation.cpp | $
 #############################################
 # Phony custom command for CMakeFiles/newPluginDB_autogen_timestamp_deps
 
-build CMakeFiles/newPluginDB_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/newPluginDB_autogen_timestamp_deps: phony /home/administrator/Qt/6.5.1/gcc_64/lib/libQt6Network.so.6.5.1 /home/administrator/Qt/6.5.1/gcc_64/lib/libQt6Widgets.so.6.5.1 /home/administrator/Qt/6.5.1/gcc_64/./libexec/moc /home/administrator/Qt/6.5.1/gcc_64/./libexec/uic /home/administrator/Qt/6.5.1/gcc_64/lib/libQt6Sql.so.6.5.1
+build CMakeFiles/newPluginDB_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/newPluginDB_autogen_timestamp_deps: phony /home/administrator/Qt/6.5.1/gcc_64/lib/libQt6Network.so.6.5.1 /home/administrator/Qt/6.5.1/gcc_64/./libexec/moc /home/administrator/Qt/6.5.1/gcc_64/./libexec/uic /home/administrator/Qt/6.5.1/gcc_64/lib/libQt6Widgets.so.6.5.1 /home/administrator/Qt/6.5.1/gcc_64/lib/libQt6Sql.so.6.5.1
 
 
 #############################################
