@@ -1,5 +1,5 @@
 <h3 align="center"> 
-  🚧 TESTE DO DRIVER DATABASE E DISTRIBUIÇÃO DA BASE DE DADOS 🚧
+  🚧 TESTE DO DRIVER DATABASE E DISTRIBUIÇÃO DA BASE DE DADOS (RQLITE) 🚧
 </h3>
 
 ---
