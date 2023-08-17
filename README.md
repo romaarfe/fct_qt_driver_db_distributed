@@ -29,8 +29,8 @@
 - C++
 - CMake
 - QT Framework
-- SQLite (QSQLite)
-- SQLCipher
+- SQLite (QSQLITE)
+- SQLCipher (QSQLCIPHER)
 - RQLite
 - JSON
 
