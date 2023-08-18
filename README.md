@@ -14,6 +14,7 @@
 - [x] Criar novos nós (inicialmente 3), gerando um cluster e distribuir de fato a base de dados (linhas de comando -- precisa adaptar código)
 - [x] Simulação de quebra de ligação entre os nós ao derrubar um deles (primeiro teste com líder) (linhas de comando -- precisa adaptar código)
 - [x] Simulação de quebra de ligação entre os nós ao derrubar um deles (segundo teste com outros dois nós) (linhas de comando -- precisa adaptar código)
+- [x] Comparativo entre base de dados local (sem alteração) e base de dados distribuída (com alteração)
 - [ ] Passagem das informações por JSON (GET/POST)
 
 ---
